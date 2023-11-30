@@ -3,21 +3,16 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"github.com/jdmcgrath/AoC-2022"
 	"os"
 	"strconv"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
 func main() {
-	readFile, err := os.Open("./day1input.txt")
-	check(err)
+	readFile, err := os.Open("./day1/input.txt")
+	aoc.Check(err)
 	defer func() {
-		check(readFile.Close())
+		aoc.Check(readFile.Close())
 	}()
 	fileScanner := bufio.NewScanner(readFile)
 	fileScanner.Split(bufio.ScanLines)
@@ -27,7 +22,7 @@ func main() {
 		calorieString := fileScanner.Text()
 		if calorieString != "" {
 			numberOfCalories, err := strconv.Atoi(calorieString)
-			check(err)
+			aoc.Check(err)
 			currentPersonCount += numberOfCalories
 		} else {
 			if currentPersonCount > largestCount {
